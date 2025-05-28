@@ -11,5 +11,5 @@ int suma(int n){
 }
 
 int main(){
-	printf("Hola mundo, cómo estas?\n");
+	printf("Hola mundo");
 }
