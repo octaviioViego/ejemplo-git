@@ -9,4 +9,6 @@ int suma(int n){
 int main(){
 	printf("Hola mundo");
 	printf("Mau estuvo aqui");
+	int *a = null;
+	*a = 100;
 }

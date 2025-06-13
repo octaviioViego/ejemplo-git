@@ -12,4 +12,5 @@ jobs:
 
       - name: Compilar código
         run: gcc holaMundo.c -o holaMundo
-
+      - name: Ejecucion del codigo
+        run: ./holaMundo
