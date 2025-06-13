@@ -1,11 +1,15 @@
-name: Integación continua
-on: push 
-jobs: 
-     compliar-y-ejecutar:
-            runs-on: ubunto-latest
-            steps: 
-                  - name: Clonar el repositorio
-                    uses: actions/checkout@v4
-                  - name: Compilar codigo
-                    run: gcc holaMundo.c -o holaMundo
-                 
+name: Integración continua
+
+on: 
+  push
+
+jobs:
+  compilar-y-ejecutar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Compilar código
+        run: gcc holaMundo.c -o holaMundo
+
