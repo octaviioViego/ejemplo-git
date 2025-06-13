@@ -1,0 +1,19 @@
+name: Liberación continua
+on:
+   release:
+       types: created
+permissions:
+   contentes: write
+jobs: 
+     compilar-y-liberar:
+         runs-on: ubunto-latest
+         steps:
+             - name: Clonar el repositorio
+               uses: actions/checkout@v4
+             - name: Compilar codigo
+               run: gcc holaMundo.c -o holaMundo -03 
+             - name: Subir el ejecutable
+               uses: svenstaro/upload-release-action@v2
+               with:
+                 file: holaMundo
+                 repo_token: ${{ secrets.GITHUB_TOKEN}}
