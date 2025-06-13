@@ -5,7 +5,7 @@ jobs:
             runs-on: ubunto-latest
             steps: 
                   - name: Clonar el repositorio
-                    uses: action/checkout@v4
+                    uses: actions/checkout@v4
                   - name: Compilar codigo
                     run: gcc holaMundo.c -o holaMundo
                  
