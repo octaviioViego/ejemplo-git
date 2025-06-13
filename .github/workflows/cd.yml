@@ -3,7 +3,7 @@ on:
    release:
        types: created
 permissions:
-   contentes: write
+   contents: write
 jobs: 
      compilar-y-liberar:
          runs-on: ubunto-latest
