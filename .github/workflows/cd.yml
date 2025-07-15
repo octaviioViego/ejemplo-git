@@ -1,19 +1,45 @@
 name: Liberación continua
+
 on:
-   release:
-       types: created
+  release:
+    types: [created]
+
 permissions:
-   contents: write
+  contents: write
+
 jobs: 
-     compilar-y-liberar:
-         runs-on: ubunto-latest
-         steps:
-             - name: Clonar el repositorio
-               uses: actions/checkout@v4
-             - name: Compilar codigo
-               run: gcc holaMundo.c -o holaMundo -03 
-             - name: Subir el ejecutable
-               uses: svenstaro/upload-release-action@v2
-               with:
-                 file: holaMundo
-                 repo_token: ${{ secrets.GITHUB_TOKEN}}
+  compilar-y-liberar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Compilar código
+        run: gcc holaMundo.c -o holaMundo -O3
+
+      - name: Subir el ejecutable
+        uses: svenstaro/upload-release-action@v2
+        with:
+          file: holaMundo
+          asset_name: holaMundo
+          tag: ${{ github.ref_name }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+  
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: iniciar sesion en Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME}}
+          password: ${{ secrets.DOCKER_PASSWORD}}
+
+      - name: Compilar y subir la imagen 
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          tags: octaviio/EJEMPLO-GIT
+          push: true
