@@ -41,5 +41,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          tags: octaviio/EJEMPLO-GIT
+          tags: octaviio/ejemplo-git
           push: true
