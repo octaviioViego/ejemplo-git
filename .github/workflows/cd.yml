@@ -37,9 +37,15 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME}}
           password: ${{ secrets.DOCKER_PASSWORD}}
 
+      - name: Extraer metadatos
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: octaviio/ejemplo-git
+
       - name: Compilar y subir la imagen 
         uses: docker/build-push-action@v6
         with:
           context: .
-          tags: octaviio/ejemplo-git
+          tags: ${{steps.meta.outputs.tags}}
           push: true
