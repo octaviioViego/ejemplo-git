@@ -2,7 +2,7 @@ FROM gcc:latest AS build
 
 WORKDIR /App
 
-COPY * .c ./
+COPY . .
 
 RUN gcc holaMundo.c -o holaMundo -static
 
